@@ -6,8 +6,21 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'civicaction',
-//      user:     'username',
-//      password: 'password'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
+  },
+
+  circleci: {
+    client: 'postgresql',
+    connection: {
+      database: 'circle_test',
+      user: 'ubuntu'
     },
     pool: {
       min: 2,
@@ -22,8 +35,6 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'civicaction',
-//      user:     'username',
-//      password: 'password'
     },
     pool: {
       min: 2,
@@ -38,8 +49,6 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'civicaction',
-//      user:     'username',
-//      password: 'password'
     },
     pool: {
       min: 2,
