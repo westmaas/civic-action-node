@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db');
+var knex = require('../db');
 
 /* GET actions listing. */
 router.get('/', function(req, res, next) {
-  res.send(db.select().table('actions'));
+  res.send(knex.select().table('actions'));
 });
 
 /* GET a specific action listing. */
 router.get('/:actionId', function(req, res, next) {
-  res.send(db.select().table('actions').where({id:req.params.actionId}));
+  res.send(knex.select().table('actions').where({id:req.params.actionId}).first());
 });
 
 module.exports = router;
