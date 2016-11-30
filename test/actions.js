@@ -15,16 +15,16 @@ let app = require("../app")
 chai.use(chaiHttp);
 //Our parent block
 describe('Actions', () => {
-  beforeEach(function(done) {
-    knex.migrate.latest()
-    .then(function() {
-      knex.seed.run()
-        .then(function() {
-          done();
+  beforeEach(function() {
+    return knex.migrate.rollback()
+      .then(function() {
+        return knex.migrate.latest();
+      })
+      .then(function() {
+        return knex.seed.run();
       });
-    });
   });
-/*
+ /*
   * Test the /GET route
   */
   describe('/GET action 2', () => {
