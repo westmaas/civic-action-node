@@ -9,22 +9,34 @@ let chaiHttp = require('chai-http');
 let should = chai.should();
 let assert = chai.assert;
 
+let knex = require('../db');
 let app = require("../app")
 
 chai.use(chaiHttp);
 //Our parent block
 describe('Actions', () => {
+  beforeEach(function(done) {
+    knex.migrate.latest()
+    .then(function() {
+      knex.seed.run()
+        .then(function() {
+          done();
+      });
+    });
+  });
 /*
   * Test the /GET route
   */
-  describe('/GET action 42', () => {
-      it('it should GET action 42', (done) => {
+  describe('/GET action 2', () => {
+      it('it should GET action 2', (done) => {
         chai.request(app)
-            .get('/actions/42')
+            .get('/actions/2')
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
-                assert.equal(res.body.actionId,42);
+                assert.equal(res.body.id,2);
+                assert.equal(res.body.name,"action 2");
+                assert.equal(res.body.description,"description 2");
               done();
             });
       });
