@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 /* GET a specific action listing. */
 router.get('/:actionId', function(req, res, next) {
-  res.send(req.params.actionId);
+  res.send(req.params);
 });
 
 module.exports = router;
