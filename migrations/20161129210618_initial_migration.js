@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
             table.increments('id').primary();
             table.string('name');
             table.string('description');
-            table.dateTime('creation_date');
+            table.dateTime('created_at').notNullable().defaultTo(knex.raw('now()'));
         })
     ])
 };
