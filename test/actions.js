@@ -25,7 +25,7 @@ describe('Actions', () => {
       });
   });
  /*
-  * Test the /GET route
+  * Test the /GET route on existing action
   */
   describe('/GET action 2', () => {
       it('it should GET action 2', (done) => {
@@ -37,6 +37,24 @@ describe('Actions', () => {
                 assert.equal(res.body.id,2);
                 assert.equal(res.body.name,"action 2");
                 assert.equal(res.body.description,"description 2");
+              done();
+            });
+      });
+  });
+
+ /*
+  * Test the /GET route on a non-existant action
+  */
+  describe('/GET on non-existant action', () => {
+      it('it should fail to GET action 42', (done) => {
+        chai.request(app)
+            .get('/actions/42')
+            .end((err, res) => {
+                res.should.have.status(404);
+                res.body.should.be.a('object');
+//                assert.equal(res.body.id,2);
+//                assert.equal(res.body.name,"action 2");
+//                assert.equal(res.body.description,"description 2");
               done();
             });
       });
