@@ -52,9 +52,6 @@ describe('Actions', () => {
             .end((err, res) => {
                 res.should.have.status(404);
                 res.body.should.be.a('object');
-//                assert.equal(res.body.id,2);
-//                assert.equal(res.body.name,"action 2");
-//                assert.equal(res.body.description,"description 2");
               done();
             });
       });
