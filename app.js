@@ -10,6 +10,7 @@ var db  = require('./db');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var actions = require('./routes/actions');
+var method_types = require('./routes/method_types');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use(require('express-promise')());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/actions', actions);
+app.use('/method_types', method_types);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
